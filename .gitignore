@@ -1,71 +1,71 @@
 # Created by .ignore support plugin (hsz.mobi)
 
 ### Java template
-*.class
+lib/*.class
 
 # Mobile Tools for Java (J2ME)
-.mtj.tmp/
+lib/.mtj.tmp/
 
 # Package Files #
-*.jar
-*.war
-*.ear
+lib/*.jar
+lib/*.war
+lib/*.ear
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+lib/hs_err_pid*
 
 
 ### Maven template
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
+lib/target/
+lib/pom.xml.tag
+lib/pom.xml.releaseBackup
+lib/pom.xml.versionsBackup
+lib/pom.xml.next
+vrelease.properties
 
 ### IntelliJ template
-.idea/
-*.iml
+lib/.idea/
+lib/*.iml
 
 ### Vagrants
-**/.vagrant/*
+lib/**/.vagrant/*
 
 ### OSX
-.DS_Store
+lib/.DS_Store
 
 ### etc
-dependency-reduced-pom.xml
+lib/dependency-reduced-pom.xml
 
 ### Eclipse project files
-.project
-.classpath
-.settings
+lib/.project
+lib/.classpath
+lib/.settings
 
 ### Emacs backup files
-*~
+lib/*~
 
-nb-configuration.xml
-.springBeans
-.factorypath
+lib/nb-configuration.xml
+lib/.springBeans
+lib/.factorypath
 
 
-deploy/
-deploys/
+lib/deploy/
+lib/deploys/
 
 # Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+lib/.elasticbeanstalk/*
+lib/!.elasticbeanstalk/*.cfg.yml
+lib/!.elasticbeanstalk/*.global.yml
 
 # Cert files
-*_cert
-*_keystore.jks
-*.cer
-*.der
-*.key
-*.pfx
-*.p12
-*.password
+lib/*_cert
+lib/*_keystore.jks
+lib/*.cer
+lib/*.der
+lib/*.key
+lib/*.pfx
+lib/*.p12
+lib/*.password
 
 # sonarqube
-.scannerwork/
+lib/.scannerwork/
