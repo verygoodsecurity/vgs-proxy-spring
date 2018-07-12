@@ -9,7 +9,7 @@ public class VgsProxyCredentialsParser {
 
   private UriComponents uriComponents;
 
-  public VgsProxyCredentials parseForwardProxyLink(final String forwardProxyLink){
+  public VgsProxyCredentials parseForwardProxyLink(final String forwardProxyLink) {
     this.uriComponents = UriComponentsBuilder.fromUriString(forwardProxyLink).build();
 
     return VgsProxyCredentials.builder()
@@ -20,11 +20,11 @@ public class VgsProxyCredentialsParser {
         .build();
   }
 
-  private String withUsername(){
+  private String withUsername() {
     return uriComponents.getUserInfo().split(USER_INFO_SEPARATOR)[0];
   }
 
-  private String withPassword(){
+  private String withPassword() {
     return uriComponents.getUserInfo().split(USER_INFO_SEPARATOR)[1];
   }
 }

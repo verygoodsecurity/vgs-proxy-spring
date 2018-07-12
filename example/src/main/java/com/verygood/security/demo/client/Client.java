@@ -15,9 +15,11 @@ public class Client {
     this.restTemplate = restTemplate;
   }
 
-  public String testCall(final String json){
+  public String testCall(final String json) {
     HttpEntity<String> entity = new HttpEntity<>(json);
-    return restTemplate.exchange("https://httpbin.verygoodsecurity.io/post", HttpMethod.POST, entity, String.class).getBody();
+    return restTemplate
+        .exchange("https://httpbin.verygoodsecurity.io/post", HttpMethod.POST, entity, String.class)
+        .getBody();
   }
 
 }

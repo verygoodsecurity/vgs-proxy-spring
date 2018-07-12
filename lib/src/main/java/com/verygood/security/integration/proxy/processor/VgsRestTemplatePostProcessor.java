@@ -26,7 +26,8 @@ public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRest
   private String forwardProxyHost;
   private VgsProxyCredentialsParser credentialsParser;
 
-  public VgsRestTemplatePostProcessor(Class<VgsRestTemplate> beanType, String forwardProxyHost, VgsProxyCredentialsParser credentialsParser) {
+  public VgsRestTemplatePostProcessor(Class<VgsRestTemplate> beanType, String forwardProxyHost,
+      VgsProxyCredentialsParser credentialsParser) {
     super(beanType);
     this.forwardProxyHost = forwardProxyHost;
     this.credentialsParser = credentialsParser;
@@ -40,7 +41,8 @@ public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRest
   @Override
   protected VgsRestTemplate postProcessAfterInitialization(VgsRestTemplate bean) {
     // Extracting credentials from Forward proxy URL.
-    VgsProxyCredentials vgsProxyCredentials = credentialsParser.parseForwardProxyLink(forwardProxyHost);
+    VgsProxyCredentials vgsProxyCredentials = credentialsParser
+        .parseForwardProxyLink(forwardProxyHost);
 
     // SSL Configuration
     TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
@@ -59,13 +61,15 @@ public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRest
     final CredentialsProvider credsProvider = new BasicCredentialsProvider();
     credsProvider.setCredentials(
         new AuthScope(vgsProxyCredentials.getProxyHost(), vgsProxyCredentials.getProxyPort()),
-        new UsernamePasswordCredentials(vgsProxyCredentials.getUsername(), vgsProxyCredentials.getPassword())
+        new UsernamePasswordCredentials(vgsProxyCredentials.getUsername(),
+            vgsProxyCredentials.getPassword())
     );
 
     // Configuring HttpClient for RestTemplate
     final HttpClientBuilder clientBuilder = HttpClientBuilder.create();
     clientBuilder.useSystemProperties();
-    clientBuilder.setProxy(new HttpHost(vgsProxyCredentials.getProxyHost(), vgsProxyCredentials.getProxyPort()));
+    clientBuilder.setProxy(
+        new HttpHost(vgsProxyCredentials.getProxyHost(), vgsProxyCredentials.getProxyPort()));
     clientBuilder.setDefaultCredentialsProvider(credsProvider);
     clientBuilder.setSSLSocketFactory(csf);
     clientBuilder.setProxyAuthenticationStrategy(new ProxyAuthenticationStrategy());

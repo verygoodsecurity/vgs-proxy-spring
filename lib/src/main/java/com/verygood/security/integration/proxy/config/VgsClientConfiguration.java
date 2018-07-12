@@ -14,17 +14,18 @@ public class VgsClientConfiguration {
   private String forwardProxyHost;
 
   @Bean
-  public VgsRestTemplatePostProcessor restTemplatePostProcessor(final VgsProxyCredentialsParser credentialsParser){
+  public VgsRestTemplatePostProcessor restTemplatePostProcessor(
+      final VgsProxyCredentialsParser credentialsParser) {
     return new VgsRestTemplatePostProcessor(VgsRestTemplate.class, forwardProxyHost, credentialsParser);
   }
 
   @Bean
-  public VgsRestTemplate vgsRestTemplate(){
+  public VgsRestTemplate vgsRestTemplate() {
     return new VgsRestTemplate();
   }
 
   @Bean
-  public VgsProxyCredentialsParser vgsProxyCredentialsParser(){
+  public VgsProxyCredentialsParser vgsProxyCredentialsParser() {
     return new VgsProxyCredentialsParser();
   }
 
