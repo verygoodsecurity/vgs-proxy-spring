@@ -1,8 +1,0 @@
-/Users/olegyatskiv/development/repos/vgs-proxy-spring/lib/src/main/java/com/verygood/security/integration/proxy/exception/VgsForwardProxyUrlFormatException.java
-/Users/olegyatskiv/development/repos/vgs-proxy-spring/lib/src/main/java/com/verygood/security/integration/proxy/client/VgsRestTemplate.java
-/Users/olegyatskiv/development/repos/vgs-proxy-spring/lib/src/main/java/com/verygood/security/integration/proxy/processor/TypedBeanPostProcessor.java
-/Users/olegyatskiv/development/repos/vgs-proxy-spring/lib/src/main/java/com/verygood/security/integration/proxy/processor/VgsRestTemplatePostProcessor.java
-/Users/olegyatskiv/development/repos/vgs-proxy-spring/lib/src/main/java/com/verygood/security/integration/proxy/utils/VgsProxyCredentials.java
-/Users/olegyatskiv/development/repos/vgs-proxy-spring/lib/src/main/java/com/verygood/security/integration/proxy/config/VgsClientConfiguration.java
-/Users/olegyatskiv/development/repos/vgs-proxy-spring/lib/src/main/java/com/verygood/security/integration/proxy/utils/VgsProxyCredentialsParser.java
-/Users/olegyatskiv/development/repos/vgs-proxy-spring/lib/src/main/java/com/verygood/security/integration/proxy/annotation/EnableVGS.java

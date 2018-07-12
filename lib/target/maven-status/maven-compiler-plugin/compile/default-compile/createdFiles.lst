@@ -1,9 +1,0 @@
-com/verygood/security/integration/proxy/annotation/EnableVGS.class
-com/verygood/security/integration/proxy/utils/VgsProxyCredentials$VgsProxyCredentialsBuilder.class
-com/verygood/security/integration/proxy/exception/VgsForwardProxyUrlFormatException.class
-com/verygood/security/integration/proxy/utils/VgsProxyCredentialsParser.class
-com/verygood/security/integration/proxy/utils/VgsProxyCredentials.class
-com/verygood/security/integration/proxy/client/VgsRestTemplate.class
-com/verygood/security/integration/proxy/processor/VgsRestTemplatePostProcessor.class
-com/verygood/security/integration/proxy/config/VgsClientConfiguration.class
-com/verygood/security/integration/proxy/processor/TypedBeanPostProcessor.class
