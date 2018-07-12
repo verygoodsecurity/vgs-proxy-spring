@@ -1,58 +1,30 @@
 package com.verygood.security.integration.proxy.utils;
 
-import com.verygood.security.integration.proxy.exception.VgsForwardProxyUrlFormatException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 public class VgsProxyCredentialsParser {
 
-  private Pattern usernamePattern = Pattern.compile("//(.*?):");
-  private Pattern passwordPattern = Pattern.compile(":([^:]+)@");
-  private Pattern hostPattern = Pattern.compile("@(.*?):");
-  private Pattern portPattern = Pattern.compile("(\\d+)(?!.*\\d)");
+  private static final String USER_INFO_SEPARATOR = ":";
+
+  private UriComponents uriComponents;
 
   public VgsProxyCredentials parseForwardProxyLink(final String forwardProxyLink){
+    this.uriComponents = UriComponentsBuilder.fromUriString(forwardProxyLink).build();
+
     return VgsProxyCredentials.builder()
-        .username(findUsername(forwardProxyLink))
-        .password(findPassword(forwardProxyLink))
-        .proxyHost(findProxyHost(forwardProxyLink))
-        .proxyPort(Integer.parseInt(findProxyPort(forwardProxyLink)))
+        .username(withUsername())
+        .password(withPassword())
+        .proxyHost(uriComponents.getHost())
+        .proxyPort(uriComponents.getPort())
         .build();
   }
 
-  private String findUsername(final String stringWithRegex){
-    Matcher usernameMatcher = usernamePattern.matcher(stringWithRegex);
-    if (usernameMatcher.find()) {
-      return usernameMatcher.group(1);
-    } else {
-      throw new VgsForwardProxyUrlFormatException("Wrong format of forward proxy property. Cant find username.");
-    }
+  private String withUsername(){
+    return uriComponents.getUserInfo().split(USER_INFO_SEPARATOR)[0];
   }
 
-  private String findPassword(final String stringWithRegex){
-    Matcher passwordMatcher = passwordPattern.matcher(stringWithRegex);
-    if (passwordMatcher.find()) {
-      return passwordMatcher.group(1);
-    } else {
-      throw new VgsForwardProxyUrlFormatException("Wrong format of forward proxy property. Cant find password.");
-    }
-  }
-
-  private String findProxyHost(final String stringWithRegex){
-    Matcher proxyHostMatcher = hostPattern.matcher(stringWithRegex);
-    if (proxyHostMatcher.find()) {
-      return proxyHostMatcher.group(1);
-    } else {
-      throw new VgsForwardProxyUrlFormatException("Wrong format of forward proxy property. Cant find proxy host.");
-    }
-  }
-
-  private String findProxyPort(final String stringWithRegex){
-    Matcher portMatcher = portPattern.matcher(stringWithRegex);
-    if (portMatcher.find()) {
-      return portMatcher.group(1);
-    } else {
-      throw new VgsForwardProxyUrlFormatException("Wrong format of forward proxy property. Cant find proxy port.");
-    }
+  private String withPassword(){
+    return uriComponents.getUserInfo().split(USER_INFO_SEPARATOR)[1];
   }
 }
