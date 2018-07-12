@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 
 public class VgsProxyCredentialsParser {
 
-  private static Pattern usernamePattern = Pattern.compile("//(.*?):");
-  private static Pattern passwordPattern = Pattern.compile(":([^:]+)@");
-  private static Pattern hostPattern = Pattern.compile("@(.*?):");
-  private static Pattern portPattern = Pattern.compile("(\\d+)(?!.*\\d)");
+  private Pattern usernamePattern = Pattern.compile("//(.*?):");
+  private Pattern passwordPattern = Pattern.compile(":([^:]+)@");
+  private Pattern hostPattern = Pattern.compile("@(.*?):");
+  private Pattern portPattern = Pattern.compile("(\\d+)(?!.*\\d)");
 
-  public static VgsProxyCredentials parseForwardProxyLink(final String forwardProxyLink){
+  public VgsProxyCredentials parseForwardProxyLink(final String forwardProxyLink){
     return VgsProxyCredentials.builder()
         .username(findUsername(forwardProxyLink))
         .password(findPassword(forwardProxyLink))
@@ -20,7 +20,7 @@ public class VgsProxyCredentialsParser {
         .build();
   }
 
-  private static String findUsername(final String stringWithRegex){
+  private String findUsername(final String stringWithRegex){
     Matcher usernameMatcher = usernamePattern.matcher(stringWithRegex);
     if (usernameMatcher.find()) {
       return usernameMatcher.group(1);
@@ -29,7 +29,7 @@ public class VgsProxyCredentialsParser {
     }
   }
 
-  private static String findPassword(final String stringWithRegex){
+  private String findPassword(final String stringWithRegex){
     Matcher passwordMatcher = passwordPattern.matcher(stringWithRegex);
     if (passwordMatcher.find()) {
       return passwordMatcher.group(1);
@@ -38,7 +38,7 @@ public class VgsProxyCredentialsParser {
     }
   }
 
-  private static String findProxyHost(final String stringWithRegex){
+  private String findProxyHost(final String stringWithRegex){
     Matcher proxyHostMatcher = hostPattern.matcher(stringWithRegex);
     if (proxyHostMatcher.find()) {
       return proxyHostMatcher.group(1);
@@ -47,7 +47,7 @@ public class VgsProxyCredentialsParser {
     }
   }
 
-  private static String findProxyPort(final String stringWithRegex){
+  private String findProxyPort(final String stringWithRegex){
     Matcher portMatcher = portPattern.matcher(stringWithRegex);
     if (portMatcher.find()) {
       return portMatcher.group(1);

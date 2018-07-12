@@ -1,6 +1,7 @@
 package com.verygood.security.integration.proxy.processor;
 
 import com.verygood.security.integration.proxy.client.VgsRestTemplate;
+import com.verygood.security.integration.proxy.exception.VgsConfigurationException;
 import com.verygood.security.integration.proxy.utils.VgsProxyCredentials;
 import com.verygood.security.integration.proxy.utils.VgsProxyCredentialsParser;
 import java.security.KeyManagementException;
@@ -23,10 +24,12 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRestTemplate> {
 
   private String forwardProxyHost;
+  private VgsProxyCredentialsParser credentialsParser;
 
-  public VgsRestTemplatePostProcessor(Class<VgsRestTemplate> beanType, String forwardProxyHost) {
+  public VgsRestTemplatePostProcessor(Class<VgsRestTemplate> beanType, String forwardProxyHost, VgsProxyCredentialsParser credentialsParser) {
     super(beanType);
     this.forwardProxyHost = forwardProxyHost;
+    this.credentialsParser = credentialsParser;
   }
 
   @Override
@@ -37,7 +40,7 @@ public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRest
   @Override
   protected VgsRestTemplate postProcessAfterInitialization(VgsRestTemplate bean) {
     // Extracting credentials from Forward proxy URL.
-    VgsProxyCredentials vgsProxyCredentials = VgsProxyCredentialsParser.parseForwardProxyLink(forwardProxyHost);
+    VgsProxyCredentials vgsProxyCredentials = credentialsParser.parseForwardProxyLink(forwardProxyHost);
 
     // SSL Configuration
     TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
@@ -48,6 +51,7 @@ public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRest
           .build();
     } catch (NoSuchAlgorithmException | KeyManagementException | KeyStoreException e) {
       e.printStackTrace();
+      throw new VgsConfigurationException("Can't configure ssl context. " + e.getMessage());
     }
     SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext);
 

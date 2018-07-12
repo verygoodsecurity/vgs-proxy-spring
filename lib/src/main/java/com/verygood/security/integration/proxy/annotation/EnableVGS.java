@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Import;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Import(value = VgsClientConfiguration.class)
-public @interface EnableVGS {
+public @interface EnableVgs {
 
 }
