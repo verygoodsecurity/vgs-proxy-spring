@@ -2,13 +2,15 @@ package com.verygood.security.integration.proxy.processor;
 
 import com.verygood.security.integration.proxy.client.VgsRestTemplate;
 import com.verygood.security.integration.proxy.exception.VgsConfigurationException;
-import com.verygood.security.integration.proxy.ssl.VeryGoodTrustManager;
 import com.verygood.security.integration.proxy.utils.VgsProxyCredentials;
 import com.verygood.security.integration.proxy.utils.VgsProxyCredentialsParser;
+import java.io.InputStream;
 import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import javax.annotation.PostConstruct;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -18,18 +20,32 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.ProxyAuthenticationStrategy;
+import org.apache.http.ssl.SSLContexts;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 
 public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRestTemplate> {
 
+  private static final String TRUST_STORE_RESOURCE_NAME = "certs/vgs-proxy.jks";
+  private static final String TRUST_STORE_PASSWORD = "verygoodproxy";
+
   private String forwardProxyHost;
   private VgsProxyCredentialsParser credentialsParser;
+
+  private KeyStore trustStore;
 
   public VgsRestTemplatePostProcessor(Class<VgsRestTemplate> beanType, String forwardProxyHost,
       VgsProxyCredentialsParser credentialsParser) {
     super(beanType);
     this.forwardProxyHost = forwardProxyHost;
     this.credentialsParser = credentialsParser;
+  }
+
+  @PostConstruct
+  public void init() throws Exception {
+    trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+    try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(TRUST_STORE_RESOURCE_NAME)) {
+      trustStore.load(inputStream, TRUST_STORE_PASSWORD.toCharArray());
+    }
   }
 
   @Override
@@ -46,9 +62,8 @@ public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRest
     // SSL Configuration
     SSLContext sslContext;
     try {
-      sslContext = SSLContext.getInstance("TLS");
-      sslContext.init(null, new TrustManager[]{VeryGoodTrustManager.INSTANCE}, null);
-    } catch (NoSuchAlgorithmException | KeyManagementException e) {
+      sslContext = SSLContexts.custom().loadTrustMaterial(trustStore, null).build();
+    } catch (NoSuchAlgorithmException | KeyManagementException | KeyStoreException e) {
       throw new VgsConfigurationException("Can't configure ssl context. " + e.getMessage());
     }
     SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext);
