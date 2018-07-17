@@ -2,13 +2,13 @@ package com.verygood.security.integration.proxy.processor;
 
 import com.verygood.security.integration.proxy.client.VgsRestTemplate;
 import com.verygood.security.integration.proxy.exception.VgsConfigurationException;
+import com.verygood.security.integration.proxy.ssl.VeryGoodTrustManager;
 import com.verygood.security.integration.proxy.utils.VgsProxyCredentials;
 import com.verygood.security.integration.proxy.utils.VgsProxyCredentialsParser;
 import java.security.KeyManagementException;
-import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -18,7 +18,6 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.ProxyAuthenticationStrategy;
-import org.apache.http.ssl.TrustStrategy;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 
 public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRestTemplate> {
@@ -45,14 +44,11 @@ public class VgsRestTemplatePostProcessor extends TypedBeanPostProcessor<VgsRest
         .parseForwardProxyLink(forwardProxyHost);
 
     // SSL Configuration
-    TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
-    SSLContext sslContext = null;
+    SSLContext sslContext;
     try {
-      sslContext = org.apache.http.ssl.SSLContexts.custom()
-          .loadTrustMaterial(null, acceptingTrustStrategy)
-          .build();
-    } catch (NoSuchAlgorithmException | KeyManagementException | KeyStoreException e) {
-      e.printStackTrace();
+      sslContext = SSLContext.getInstance("TLS");
+      sslContext.init(null, new TrustManager[]{VeryGoodTrustManager.INSTANCE}, null);
+    } catch (NoSuchAlgorithmException | KeyManagementException e) {
       throw new VgsConfigurationException("Can't configure ssl context. " + e.getMessage());
     }
     SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext);
