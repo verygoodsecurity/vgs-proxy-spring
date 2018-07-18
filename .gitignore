@@ -69,3 +69,6 @@ lib/*.password
 
 # sonarqube
 lib/.scannerwork/
+
+.idea/
+*.iml
