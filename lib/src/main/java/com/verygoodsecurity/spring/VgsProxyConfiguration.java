@@ -3,6 +3,7 @@ package com.verygoodsecurity.spring;
 import com.verygoodsecurity.spring.annotation.VgsProxied;
 import com.verygoodsecurity.spring.exception.VgsProxyConfigurationException;
 
+import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
@@ -65,19 +66,19 @@ public class VgsProxyConfiguration {
   public ClientHttpRequestFactory createRequestFactory() {
     final SSLContext sslContext = buildSSLContext();
 
-    final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-    credentialsProvider.setCredentials(
-        new AuthScope(
-            forwardProxyUri.getHost(),
-            forwardProxyUri.getPort()
-        ),
-        parseProxyCredentials()
+    final HttpHost proxy = new HttpHost(
+        forwardProxyUri.getHost(),
+        forwardProxyUri.getPort()
     );
+
+    final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+    credentialsProvider.setCredentials(new AuthScope(proxy), parseProxyCredentials());
 
     return new HttpComponentsClientHttpRequestFactory(
         HttpClients.custom()
             .useSystemProperties()
             .setSSLContext(sslContext)
+            .setProxy(proxy)
             .setProxyAuthenticationStrategy(new ProxyAuthenticationStrategy())
             .setDefaultCredentialsProvider(credentialsProvider)
             .build()
