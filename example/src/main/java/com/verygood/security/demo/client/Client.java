@@ -1,6 +1,6 @@
 package com.verygood.security.demo.client;
 
-import com.verygood.security.integration.proxy.client.VgsRestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,8 @@ public class Client {
 
   private RestTemplate restTemplate;
 
-  public Client(VgsRestTemplate restTemplate) {
+  @Autowired
+  public Client(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
   }
 
