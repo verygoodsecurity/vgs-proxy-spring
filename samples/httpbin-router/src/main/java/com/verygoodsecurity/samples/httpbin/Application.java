@@ -1,4 +1,4 @@
-package com.verygoodsecurity;
+package com.verygoodsecurity.samples.httpbin;
 
 
 import com.verygoodsecurity.spring.annotation.EnableVgsProxy;

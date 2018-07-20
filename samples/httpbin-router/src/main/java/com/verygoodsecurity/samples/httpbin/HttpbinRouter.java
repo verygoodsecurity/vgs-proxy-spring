@@ -1,10 +1,9 @@
-package com.verygoodsecurity;
+package com.verygoodsecurity.samples.httpbin;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,15 +22,14 @@ public class HttpbinRouter {
     this.restTemplate = restTemplate;
   }
 
-  @PostMapping(value = "/post")
+  @PostMapping("/post")
   @ResponseBody
   public String send(@RequestBody final String json) {
     LOGGER.info("Redacted JSON using VGS reverse proxy:\n {}", json);
 
     final HttpEntity<String> entity = new HttpEntity<>(json);
     final String response = restTemplate
-        .exchange("https://httpbin.verygoodsecurity.io/post", HttpMethod.POST, entity, String.class)
-        .getBody();
+        .postForObject("https://httpbin.verygoodsecurity.io/post", entity, String.class);
 
     LOGGER.info("Revealed JSON after sending via VGS forward proxy:\n {}", response);
 
