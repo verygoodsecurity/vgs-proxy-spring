@@ -37,6 +37,9 @@ public class VgsProxyConfiguration {
 
   private final UriComponents forwardProxyUri;
 
+  /**
+   * List of annotated beans to configure.
+   */
   private List<RestTemplate> restTemplates = Collections.emptyList();
 
   @Autowired
@@ -44,7 +47,7 @@ public class VgsProxyConfiguration {
     try {
       this.forwardProxyUri = UriComponentsBuilder.fromHttpUrl(forwardProxyUrl).build();
     } catch (Exception cause) {
-      throw new VgsProxyConfigurationException("Failed to parse proxy URL", cause);
+      throw new VgsProxyConfigurationException("Failed to parse proxy URL: " + forwardProxyUrl, cause);
     }
   }
 
@@ -104,7 +107,7 @@ public class VgsProxyConfiguration {
       final int colonIndex = userInfo.indexOf(':');
       return new UsernamePasswordCredentials(userInfo.substring(0, colonIndex), userInfo.substring(colonIndex + 1));
     } catch (Exception cause) {
-      throw new VgsProxyConfigurationException("Failed to parse proxy credentials", cause);
+      throw new VgsProxyConfigurationException("Failed to parse proxy credentials: " + userInfo, cause);
     }
   }
 }
