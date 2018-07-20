@@ -9,7 +9,7 @@ The application is a router to [httpbin](https://httpbin.verygoodsecurity.io/) s
 3. Go to [VGS Dashboard](https://dashboard.verygoodsecurity.com/)
 4. Create sandbox vault and configure the routes the following way (use your ngrok address for Inbound destination url):
 
-<img src="https://github.com/verygoodsecurity/vgs-proxy-spring/blob/master/samples/httpbin-router/httpbin%20-%20routes.png" alt="Httpbin routes on VGS Dashboard" width=512 >
+<img src="https://github.com/verygoodsecurity/vgs-proxy-spring/blob/master/samples/httpbin-router/httpbin_routes.png" alt="Httpbin routes on VGS Dashboard" width=768 >
 
 5. Add your forward proxy url to `application.properties`
 6. Start the `httpbin-router` app with `mvn spring-boot:run`
