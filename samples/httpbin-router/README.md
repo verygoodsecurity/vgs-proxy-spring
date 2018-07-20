@@ -16,7 +16,7 @@ The application is a router to [httpbin](https://httpbin.verygoodsecurity.io/) s
 7. Send a curl request to verify request is proxied via VGS:
 
 ```
-curl https://tntgssc4gig.SANDBOX.verygoodproxy.com/post \                                                                                            ✔  8844  12:11:13
+curl https://tntgssc4gig.SANDBOX.verygoodproxy.com/post \
   -H "Content-type: application/json" \
   -d '{"secret": "foo"}'
 ```
