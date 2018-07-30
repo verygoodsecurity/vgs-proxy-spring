@@ -1,6 +1,6 @@
 <p align="center"><a href="https://www.verygoodsecurity.com/"><img src="https://avatars0.githubusercontent.com/u/17788525" width="128" alt="VGS Logo"></a></p>
-<p align="center"><b>vgs-proxy-spring</b></p>
-<p align="center"><i>Provides an easy way to integrate a Spring-based project with the VGS forward proxy.</i></p>
+<p align="center"><b>vgs-proxy-spring</b><br/>Provides an easy way to integrate a Spring-based project with the VGS forward proxy.</p>
+<p align="center"><a href="https://circleci.com/gh/verygoodsecurity/vgs-proxy-spring/tree/master"><img src="https://circleci.com/gh/verygoodsecurity/vgs-proxy-spring/tree/master.svg?style=svg&circle-token=a588c965f1abd47026b3beb97b004b396d009c77" alt="CircleCI"></a></p>
 
 ## Quick Start
 
