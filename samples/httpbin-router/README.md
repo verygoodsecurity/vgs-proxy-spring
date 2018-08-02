@@ -11,7 +11,7 @@ The application is a router to [httpbin](https://httpbin.verygoodsecurity.io/) s
 
 <img src="https://github.com/verygoodsecurity/vgs-proxy-spring/blob/master/samples/httpbin-router/httpbin_routes.png" alt="Httpbin routes on VGS Dashboard" width=768 >
 
-5. Add your forward proxy url to `application.properties`
+5. Add your forward proxy url replacing `<USERNAME>` and `<PASSWORD>` with your proxy credentials to `application.properties`
 6. Start the `httpbin-router` app with `mvn spring-boot:run`
 7. Send a curl request to verify request is proxied via VGS:
 
