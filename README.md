@@ -32,7 +32,7 @@ the vault you want to integrate with. Look for the `Outbound Route URL` on the
 dashboard](https://dashboard.verygoodsecurity.com/dashboard). It should look
 similar to this one:
 
-    https://USvWJyqzunxnW1pDKxgvPLmf:3da78204-e566-4e03-a03a-d84e3d1d4d1b@tnttzeeizod.SANDBOX.verygoodproxy.com:8080
+    https://USvWJyqzunxnW1pDKxgvPLmf:3da78204-e566-4e03-a03a-d84e3d1d4d1b@tntabeiyol.SANDBOX.verygoodproxy.com:8080
 
 Secondly, do the following steps to configure a `RestTemplate` to use the VGS
 forward proxy:
