@@ -6,7 +6,7 @@
 
     <groupId>com.verygoodsecurity</groupId>
     <artifactId>vgs-proxy-spring</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>VGS :: Spring Integration</name>
 
@@ -18,6 +18,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>jfrog</id>
+            <url>https://api.bintray.com/maven/vg/vgs-oss/vgs-proxy-spring/;publish=1</url>
+        </repository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
