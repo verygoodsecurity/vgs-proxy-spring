@@ -11,6 +11,16 @@ Before you begin, add this library as a dependency to your project.
 For Maven:
 
 ```xml
+<repositories>
+    <repository>
+        <id>vgs-oss</id>
+        <name>vgs-oss</name>
+        <url>https://dl.bintray.com/vg/vgs-oss</url>
+    </repository>
+</repositories>
+```
+
+```xml
 <dependency>
     <groupId>com.verygoodsecurity</groupId>
     <artifactId>vgs-proxy-spring</artifactId>
@@ -19,6 +29,14 @@ For Maven:
 ```
 
 For Gradle:
+
+```
+repositories {
+    maven {
+        url "https://dl.bintray.com/vg/vgs-oss"
+    }
+}
+```
 
 ```
 compile 'com.verygoodsecurity:vgs-proxy-spring:1.0.0'
