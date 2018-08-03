@@ -21,7 +21,7 @@ For Maven:
 For Gradle:
 
 ```
-compile 'com.verygoodsecurity:vgs-proxy-spring:1.0-SNAPSHOT'
+compile 'com.verygoodsecurity:vgs-proxy-spring:1.0.0'
 ```
 
 ### Usage
