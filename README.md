@@ -14,7 +14,7 @@ For Maven:
 <dependency>
     <groupId>com.verygoodsecurity</groupId>
     <artifactId>vgs-proxy-spring</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
