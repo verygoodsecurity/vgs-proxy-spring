@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/vgs-proxy-spring
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - vgs-proxy-spring-{{ checksum "lib/pom.xml" }}
+      - run: mvn clean install
+      - save_cache:
+          key: vgs-proxy-spring-{{ checksum "lib/pom.xml" }}
+          paths:
+            - ~/.m2

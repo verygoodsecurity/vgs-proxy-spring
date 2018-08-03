@@ -1,0 +1,74 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+### Java template
+lib/*.class
+
+# Mobile Tools for Java (J2ME)
+lib/.mtj.tmp/
+
+# Package Files #
+lib/*.jar
+lib/*.war
+lib/*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+lib/hs_err_pid*
+
+
+### Maven template
+lib/target/
+lib/pom.xml.tag
+lib/pom.xml.releaseBackup
+lib/pom.xml.versionsBackup
+lib/pom.xml.next
+vrelease.properties
+
+### IntelliJ template
+lib/.idea/
+lib/*.iml
+
+### Vagrants
+lib/**/.vagrant/*
+
+### OSX
+lib/.DS_Store
+
+### etc
+lib/dependency-reduced-pom.xml
+
+### Eclipse project files
+lib/.project
+lib/.classpath
+lib/.settings
+
+### Emacs backup files
+lib/*~
+
+lib/nb-configuration.xml
+lib/.springBeans
+lib/.factorypath
+
+
+lib/deploy/
+lib/deploys/
+
+# Elastic Beanstalk Files
+lib/.elasticbeanstalk/*
+lib/!.elasticbeanstalk/*.cfg.yml
+lib/!.elasticbeanstalk/*.global.yml
+
+# Cert files
+lib/*_cert
+lib/*_keystore.jks
+lib/*.cer
+lib/*.der
+lib/*.key
+lib/*.pfx
+lib/*.p12
+lib/*.password
+
+# sonarqube
+lib/.scannerwork/
+
+.idea/
+*.iml
