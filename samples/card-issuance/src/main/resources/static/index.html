@@ -1,11 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VGS Samples :: Card Issuance</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/favicon.ico">
+  <title>VGS Samples :: Card Issuance</title>
 </head>
 <body>
-    <p>Hello, World!</p>
+  <div>
+    <form id="user-form">
+      <div>
+        <label for="first_name">First Name</label>
+        <div>
+          <input id="first_name" name="first_name" type="text" required="required">
+        </div>
+      </div>
+      <div>
+        <label for="last_name">Last Name</label>
+        <div>
+          <input id="last_name" name="last_name" type="text" required="required">
+        </div>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <div>
+          <input id="email" name="email" type="email" required="required">
+        </div>
+      </div>
+      <div>
+        <label for="birth_date">Birthdate</label>
+        <div>
+          <input id="birth_date" name="birth_date" type="date" required="required">
+        </div>
+      </div>
+      <div>
+        <label for="ssn">SSN</label>
+        <div>
+          <input id="ssn" name="ssn" type="text" required="required">
+        </div>
+      </div>
+      <div>
+        <div>
+          <button id="submit" name="submit" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="scripts/index.js"></script>
 </body>
 </html>

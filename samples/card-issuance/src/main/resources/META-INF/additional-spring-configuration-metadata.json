@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "marqeta.card-product.token",
+      "type": "java.lang.String",
+      "description": "TODO: Add description."
+    },
+    {
+      "name": "vgs.proxy.url",
+      "type": "java.lang.String",
+      "description": "TODO: Add description."
+    }
+  ]
+}
