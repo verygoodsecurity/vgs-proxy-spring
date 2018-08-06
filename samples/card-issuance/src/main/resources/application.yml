@@ -1,0 +1,18 @@
+logging:
+  level:
+    com.verygoodsecurity: debug
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: root
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+vgs:
+  proxy:
+    url: ${VGS_PROXY_URL}
