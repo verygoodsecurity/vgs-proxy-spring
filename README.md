@@ -106,7 +106,7 @@ public class MySecureClient {
   private final RestTemplate vgsProxied;
 
   @Autowired
-  public MySecureClass(RestTemplate restTemplate,
+  public MySecureClient(RestTemplate restTemplate,
                        @VgsProxied RestTemplate vgsProxied) {
 
     this.restTemplate = restTemplate;
