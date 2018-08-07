@@ -11,9 +11,9 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.support.BasicAuthorizationInterceptor;
 import org.springframework.web.client.RestTemplate;
 
-// TODO: Annotate with @EnableVgsProxy
 @Configuration
 @EnableConfigurationProperties(MarqetaApiKeys.class)
+@EnableVgsProxy
 public class MarqetaConfig {
 
   private final MarqetaApiKeys apiKeys;
@@ -23,8 +23,8 @@ public class MarqetaConfig {
     this.apiKeys = apiKeys;
   }
 
-  // TODO: Annotate with @VgsProxied
   @Bean
+  @VgsProxied
   public RestTemplate marqetaRestTemplate(RestTemplateBuilder restTemplateBuilder) {
     final RestTemplate restTemplate = restTemplateBuilder.build();
     restTemplate.getInterceptors().add(authorization());

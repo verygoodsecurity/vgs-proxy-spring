@@ -4,6 +4,8 @@ import com.verygoodsecurity.samples.component.marqeta.model.card.CreateCardReque
 import com.verygoodsecurity.samples.component.marqeta.model.card.CreateCardResponse;
 import com.verygoodsecurity.samples.component.marqeta.model.user.CreateUserRequest;
 import com.verygoodsecurity.samples.component.marqeta.model.user.CreateUserResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class MarqetaClient {
+
+  private static final Logger logger = LoggerFactory.getLogger(MarqetaClient.class);
 
   private final RestTemplate restTemplate;
 
@@ -28,10 +32,11 @@ public class MarqetaClient {
 
   public CreateCardResponse createCard(CreateCardRequest request) {
     try {
-      final String url = baseUrl + "/cards?show_pan=false&show_cvv_number=true";
+      final String url = baseUrl + "/cards?show_pan=true&show_cvv_number=true";
       return restTemplate.postForObject(url, request, CreateCardResponse.class);
     } catch (HttpStatusCodeException cause) {
-      // TODO: Add error handling
+      // TODO: Add proper error handling
+      logger.error(cause.getResponseBodyAsString());
       throw cause;
     }
   }
@@ -41,7 +46,8 @@ public class MarqetaClient {
       final String url = baseUrl + "/users";
       return restTemplate.postForObject(url, request, CreateUserResponse.class);
     } catch (HttpStatusCodeException cause) {
-      // TODO: Add error handling
+      // TODO: Add proper error handling
+      logger.error(cause.getResponseBodyAsString());
       throw cause;
     }
   }
