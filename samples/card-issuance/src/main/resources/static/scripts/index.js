@@ -1,4 +1,13 @@
 $(document).ready(function () {
+  $('#success-panel').hide();
+
+  let togglePanels = function () {
+    let array = ['#apply-panel', '#success-panel'];
+    $.each(array, function (index, element) {
+      $(element).toggle();
+    });
+  };
+
   let serializeJSON = function (form) {
     let object = {};
 
@@ -10,7 +19,7 @@ $(document).ready(function () {
     return JSON.stringify(object);
   };
 
-  $("#user-form").submit(function (event) {
+  $('#user-form').submit(function (event) {
     event.preventDefault();
 
     let json = serializeJSON(this);
@@ -20,7 +29,15 @@ $(document).ready(function () {
       type: 'POST',
       url: '/cards',
       contentType: 'application/json',
-      data: json
+      data: json,
+      success: function (response) {
+        console.log(response);
+        togglePanels();
+      }
     });
+  });
+
+  $('#apply-again-btn').click(function () {
+    togglePanels();
   });
 });

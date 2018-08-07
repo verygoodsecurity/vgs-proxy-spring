@@ -10,40 +10,45 @@
 </head>
 <body class="bg-light">
 <div class="container">
-  <div class="col-8 offset-2">
+  <div class="col-8 offset-2" id="apply-panel">
     <div class="card card-outline-secondary">
-      <div class="card-header">
-        <h3 class="mb-0">Apply For a Virtual Card</h3>
+      <div class="card-header d-table">
+        <div class="d-table-row">
+          <h3 class="align-middle d-table-cell">Card Issuance</h3>
+          <div class="d-table-cell">
+            <img class="img-fluid float-right" src="images/cards.png">
+          </div>
+        </div>
       </div>
       <div class="card-body">
         <form autocomplete="off" id="user-form">
           <div class="form-group row">
-            <label class="col-2 col-form-label" for="first_name">First Name</label>
-            <div class="col-10">
+            <label class="col-3 col-form-label font-weight-bold" for="first_name">FIRST NAME</label>
+            <div class="col-9">
               <input class="form-control" id="first_name" name="first_name" required="required" type="text">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-2 col-form-label" for="last_name">Last Name</label>
-            <div class="col-10">
+            <label class="col-3 col-form-label font-weight-bold" for="last_name">LAST NAME</label>
+            <div class="col-9">
               <input class="form-control" id="last_name" name="last_name" required="required" type="text">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-2 col-form-label" for="email">Email</label>
-            <div class="col-10">
+            <label class="col-3 col-form-label font-weight-bold" for="email">EMAIL</label>
+            <div class="col-9">
               <input class="form-control" id="email" name="email" required="required" type="email">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-2 col-form-label" for="birth_date">Birth Date</label>
-            <div class="col-10">
-              <input class="form-control" id="birth_date" name="birth_date" required="required" type="date">
+            <label class="col-3 col-form-label font-weight-bold" for="birth_date">BIRTH DATE</label>
+            <div class="col-9">
+              <input class="form-control" id="birth_date" min="1970-01-01" name="birth_date" required="required" type="date" value="1970-01-01">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-2 col-form-label" for="ssn">SSN</label>
-            <div class="col-10">
+            <label class="col-3 col-form-label font-weight-bold" for="ssn">SSN</label>
+            <div class="col-9">
               <input class="form-control" id="ssn" maxlength="9" name="ssn" required="required" type="text">
             </div>
           </div>
@@ -53,6 +58,21 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-8 offset-2" id="success-panel">
+    <div class="card">
+      <div class="card-header">
+        <h4>Congratulations!</h4>
+        <h6 class="card-subtitle mb-0 text-muted">Your virtual credit card has been issued successfully.</h6>
+      </div>
+      <div class="card-body">
+        <div class="mb-0 row">
+          <div class="col-4 offset-8">
+            <button class="btn btn-block btn-primary" id="apply-again-btn" name="apply-again-btn" type="button">Apply for another</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
