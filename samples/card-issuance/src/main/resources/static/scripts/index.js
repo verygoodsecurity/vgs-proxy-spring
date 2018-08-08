@@ -31,6 +31,12 @@ $(document).ready(function () {
       data: json,
       success: function (response) {
         console.log(response);
+        $.each(response, function (name, value) {
+          let element = $('#' + name);
+          if (element) {
+            element.text(value || '');
+          }
+        });
         togglePanels();
       },
       error: function (jqXHR) {
