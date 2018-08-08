@@ -23,6 +23,7 @@ $(document).ready(function () {
     let json = serializeJSON(this);
     console.log(json);
 
+    $('#spinner').show();
     $.ajax({
       type: 'POST',
       url: 'https://tntlm8fhgcf.SANDBOX.verygoodproxy.io/cards',
@@ -31,6 +32,12 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response);
         togglePanels();
+      },
+      error: function (jqXHR) {
+        alert(jqXHR.responseText);
+      },
+      complete: function () {
+        $('#spinner').hide();
       }
     });
   });

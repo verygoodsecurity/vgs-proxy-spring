@@ -42,7 +42,15 @@ public class MarqetaError extends RuntimeException {
   }
 
   @Override
+  public String getMessage() {
+    return this.toString();
+  }
+
+  @Override
   public String toString() {
-    return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+        .append("error_code", errorCode)
+        .append("error_message", errorMessage)
+        .build();
   }
 }
