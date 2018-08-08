@@ -1,17 +1,20 @@
 package com.verygoodsecurity.samples.config;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+// See https://www.marqeta.com/api/guides/WIlA2isAAMkAsk6F/quick-start#step_____get_access
 @ConfigurationProperties(prefix = "marqeta.api-keys")
 public class MarqetaApiKeys {
 
   /**
-   * TODO: Add description.
+   * Application token.
    */
   private String applicationToken;
 
   /**
-   * TODO: Add description.
+   * Master access token.
    */
   private String masterAccessToken;
 
@@ -29,5 +32,10 @@ public class MarqetaApiKeys {
 
   public void setMasterAccessToken(String masterAccessToken) {
     this.masterAccessToken = masterAccessToken;
+  }
+
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
   }
 }

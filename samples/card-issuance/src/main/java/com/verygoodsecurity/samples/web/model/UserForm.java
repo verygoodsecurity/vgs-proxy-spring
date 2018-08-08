@@ -1,4 +1,4 @@
-package com.verygoodsecurity.samples.controller.model;
+package com.verygoodsecurity.samples.web.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;

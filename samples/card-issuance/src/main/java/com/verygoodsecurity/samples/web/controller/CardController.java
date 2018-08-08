@@ -1,7 +1,7 @@
-package com.verygoodsecurity.samples.controller;
+package com.verygoodsecurity.samples.web.controller;
 
-import com.verygoodsecurity.samples.controller.model.CreateCardResponse;
-import com.verygoodsecurity.samples.controller.model.UserForm;
+import com.verygoodsecurity.samples.web.model.CreateCardResponse;
+import com.verygoodsecurity.samples.web.model.UserForm;
 import com.verygoodsecurity.samples.domain.Card;
 import com.verygoodsecurity.samples.domain.User;
 import com.verygoodsecurity.samples.service.CardService;

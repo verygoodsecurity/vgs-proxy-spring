@@ -1,6 +1,7 @@
 logging:
   level:
     com.verygoodsecurity: debug
+    org.springframework.web: debug
 
 spring:
   datasource:

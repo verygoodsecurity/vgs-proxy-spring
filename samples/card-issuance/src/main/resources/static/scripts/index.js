@@ -1,6 +1,4 @@
 $(document).ready(function () {
-  $('#success-panel').hide();
-
   let togglePanels = function () {
     let array = ['#apply-panel', '#success-panel'];
     $.each(array, function (index, element) {
@@ -27,7 +25,7 @@ $(document).ready(function () {
 
     $.ajax({
       type: 'POST',
-      url: '/cards',
+      url: 'https://tntlm8fhgcf.SANDBOX.verygoodproxy.io/cards',
       contentType: 'application/json',
       data: json,
       success: function (response) {
