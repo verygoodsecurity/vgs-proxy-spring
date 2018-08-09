@@ -22,7 +22,7 @@ marqeta:
     application-token: ${MARQETA_APPLICATION_TOKEN}
     master-access-token: ${MARQETA_MASTER_ACCESS_TOKEN}
   card-product:
-    token: ${MARQETA_CARD_PRODUCT_TOKEN:6454fc38-6146-4eb3-89a2-5286431ef3ad}
+    token: ${MARQETA_CARD_PRODUCT_TOKEN}
 
 vgs:
   proxy:

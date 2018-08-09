@@ -8,7 +8,7 @@
     {
       "name": "vgs.proxy.url",
       "type": "java.lang.String",
-      "description": "TODO: Add description."
+      "description": "Outbound Route URL, as seen on the VGS dashboard."
     }
   ]
 }
