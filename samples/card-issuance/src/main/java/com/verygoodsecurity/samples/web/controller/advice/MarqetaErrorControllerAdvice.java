@@ -19,6 +19,6 @@ public class MarqetaErrorControllerAdvice {
     return ResponseEntity
         .status(exception.getStatusCode())
         .contentType(MediaType.APPLICATION_JSON)
-        .body(exception.toString());
+        .body(exception.getMessage());
   }
 }
