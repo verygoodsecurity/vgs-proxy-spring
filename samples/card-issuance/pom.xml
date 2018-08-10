@@ -18,6 +18,7 @@
     <name>VGS Samples :: Card Issuance</name>
 
     <properties>
+        <commons-io.version>2.6</commons-io.version>
         <hamcrest-optional.version>1.1.1</hamcrest-optional.version>
         <vgs-proxy-spring.version>${project.version}</vgs-proxy-spring.version>
     </properties>
@@ -75,6 +76,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

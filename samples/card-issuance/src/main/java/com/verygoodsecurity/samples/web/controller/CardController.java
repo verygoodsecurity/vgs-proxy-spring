@@ -6,8 +6,10 @@ import com.verygoodsecurity.samples.domain.Card;
 import com.verygoodsecurity.samples.domain.User;
 import com.verygoodsecurity.samples.service.CardService;
 import com.verygoodsecurity.samples.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,6 +24,7 @@ public class CardController {
   }
 
   @PostMapping("/cards")
+  @ResponseStatus(HttpStatus.CREATED)
   public CreateCardResponse createCard(@RequestBody UserForm userForm) {
     final User user =
         userService
