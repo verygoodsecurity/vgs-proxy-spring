@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.time.LocalDate;
 
+// https://www.marqeta.com/api/docs/VhK2YBwAALoAnvJs/users#create_user
 public class CreateUserRequest {
 
   @JsonProperty("token")

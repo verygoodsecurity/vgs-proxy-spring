@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+// https://www.marqeta.com/api/docs/VhK2YBwAALoAnvJs/users#create_user
 public class CreateUserResponse {
 
   @JsonProperty("token")

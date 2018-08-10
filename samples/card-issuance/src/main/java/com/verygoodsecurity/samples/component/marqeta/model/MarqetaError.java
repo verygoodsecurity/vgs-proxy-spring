@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.http.HttpStatus;
 
+// https://www.marqeta.com/api/docs/Vh2cTBwAAB8AF3aI/errors#error_codes_and_messages
 public class MarqetaError extends RuntimeException {
 
   @JsonIgnore

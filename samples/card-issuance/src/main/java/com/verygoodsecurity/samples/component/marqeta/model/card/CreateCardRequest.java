@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+// https://www.marqeta.com/api/docs/VhypzxwAANwA_Vgx/cards#create_card
 public class CreateCardRequest {
 
   @JsonProperty("card_product_token")

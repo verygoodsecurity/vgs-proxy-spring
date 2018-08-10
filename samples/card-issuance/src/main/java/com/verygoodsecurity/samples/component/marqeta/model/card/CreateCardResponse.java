@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.time.LocalDateTime;
 
+// https://www.marqeta.com/api/docs/VhypzxwAANwA_Vgx/cards#create_card
 public class CreateCardResponse {
 
   @JsonProperty("token")
