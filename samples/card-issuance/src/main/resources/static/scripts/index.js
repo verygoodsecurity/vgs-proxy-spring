@@ -21,7 +21,6 @@ $(document).ready(function () {
         event.preventDefault();
 
         let json = serializeJSON(this);
-        console.log(json);
 
         $('#spinner').show();
         $.ajax({
@@ -30,7 +29,6 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: json,
             success: function (response) {
-                console.log(response);
                 $.each(response, function (name, value) {
                     let element = $('#' + name);
                     if (element) {
