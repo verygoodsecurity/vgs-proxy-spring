@@ -1,4 +1,7 @@
-# VGS Samples – Card Issuance
+<p align="center"><a href="https://www.verygoodsecurity.com/"><img src="https://avatars0.githubusercontent.com/u/17788525" width="128" alt="VGS Logo"></a></p>
+<p align="center"><b>VGS Samples – Card Issuance</b></p>
+
+## Introduction
 
 This sample is intended to demonstrate how a payment card issuance application
 can be implemented using VGS to secure sensitive data in transit and at rest.
@@ -236,14 +239,95 @@ To set the Inbound Route URL, execute the following command:
 sed -i '' 's|INBOUND_ROUTE_URL|<Inbound Route URL>|g' src/main/resources/static/scripts/index.js
 ```
 
+It will replace the `INBOUND_ROUTE_URL` placeholder in
+[index.js](src/main/resources/static/scripts/index.js) with an actual URL, so
+incoming requests are proxied through VGS.
+
 To set the Outbound Route URL, execute the following command:
 
 ```bash
 export VGS_PROXY_URL="<Outbound Route URL>"
 ```
 
+The application is aware of this environment variable and will pick its value
+automatically to proxy outgoing requests through VGS.
+
 ### Start the application
+
+With everything in place, you may now start the application:
 
 ```bash
 mvn clean package spring-boot:run -DskipTests
+```
+
+## Applying for a card
+
+Point your browser to the forwarding URL previously assigned by ngrok (e.g.,
+`https://6ca7be3b.ngrok.io`). You will be greeted with a user form.
+
+To apply for a virtual payment card, fill in the form and press the Submit
+button.
+
+**NOTE:** Please keep in mind that the Marqeta API sandbox used by this
+application is a shared environment. We **_strongly discourage_** you from
+providing any personal data that you don't want others to see.
+
+![User Form](img/user_form.png)
+
+After a short delay, the card details will appear: ![Card
+Details](img/card_details.png)
+
+## Verifying data security
+
+At this point, we have already seen the application in action. Now let's ensure
+the user data is actually safe.
+
+The application utilizes
+[H2 Database Engine](http://www.h2database.com/html/main.html) for persistence.
+Open its console at `<ngrok Forwarding URL>/h2-console` (e.g.,
+`https://6ca7be3b.ngrok.io/h2-console`) and log in. The default username is
+`root` with no password.
+
+![H2 Console](img/h2_console.png)
+
+To verify user data is secure, execute the following SQL query:
+
+```sql
+SELECT * FROM USER;
+```
+
+![Query Users](img/query_users.png)
+
+To verify card data is secure, execute the following SQL query:
+
+```sql
+SELECT * FROM CARD;
+```
+
+![Query Cards](img/query_cards.png)
+
+As you can see, everything is
+[tokenized](https://en.wikipedia.org/wiki/Tokenization_(data_security)).
+
+Moreover, there's no sensitive data in the application log either:
+
+```
+2018-08-10 13:57:48.284 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : DispatcherServlet with name 'dispatcherServlet' processing POST request for [/cards]
+2018-08-10 13:57:48.284 DEBUG 71295 --- [nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Looking up handler method for path /cards
+2018-08-10 13:57:48.284 DEBUG 71295 --- [nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Returning handler method [public com.verygoodsecurity.samples.web.model.CreateCardResponse com.verygoodsecurity.samples.web.controller.CardController.createCard(com.verygoodsecurity.samples.web.model.UserForm)]
+2018-08-10 13:57:48.533 DEBUG 71295 --- [nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read [class com.verygoodsecurity.samples.web.model.UserForm] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@7e3beb3]
+2018-08-10 13:57:48.570  INFO 71295 --- [nio-8080-exec-2] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-08-10 13:57:48.663 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : Created POST request for "https://shared-sandbox-api.marqeta.com/v3/users"
+2018-08-10 13:57:48.674 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : Setting request Accept header to [application/json, application/json, application/*+json, application/*+json]
+2018-08-10 13:57:48.684 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : Writing [CreateUserRequest[token=tok_dev_78zYPxGGgDERm82Kaqyb5u,firstName=tok_dev_32B7zPuuZctuT5eRDwchdE,lastName=tok_dev_66dwSuCuLyfqvfuedogWER,email=tok_dev_78zYPxGGgDERm82Kaqyb5u,birthDate=1984-07-21,ssn=tok_dev_814ooVk5pNmxdQBeBaQy1z]] using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@7e3beb3]
+2018-08-10 13:57:52.280 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : POST request for "https://shared-sandbox-api.marqeta.com/v3/users" resulted in 201 (Created)
+2018-08-10 13:57:52.281 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : Reading [class com.verygoodsecurity.samples.component.marqeta.model.user.CreateUserResponse] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@7e3beb3]
+2018-08-10 13:57:52.326 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : Created POST request for "https://shared-sandbox-api.marqeta.com/v3/cards?show_pan=true&show_cvv_number=true"
+2018-08-10 13:57:52.327 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : Setting request Accept header to [application/json, application/json, application/*+json, application/*+json]
+2018-08-10 13:57:52.328 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : Writing [CreateCardRequest[cardProductToken=6454fc38-6146-4eb3-89a2-5286431ef3ad,userToken=tok_dev_78zYPxGGgDERm82Kaqyb5u]] using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@7e3beb3]
+2018-08-10 13:57:53.503 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : POST request for "https://shared-sandbox-api.marqeta.com/v3/cards?show_pan=true&show_cvv_number=true" resulted in 201 (Created)
+2018-08-10 13:57:53.503 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.client.RestTemplate              : Reading [class com.verygoodsecurity.samples.component.marqeta.model.card.CreateCardResponse] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@7e3beb3]
+2018-08-10 13:57:53.523 DEBUG 71295 --- [nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Written [CreateCardResponse[token=tok_dev_mhkrMV6qGE8WQpWu4aqUqT,cardProductToken=6454fc38-6146-4eb3-89a2-5286431ef3ad,userToken=tok_dev_78zYPxGGgDERm82Kaqyb5u,pan=tok_dev_s24KtVkWaybTyG1hzcCzAB,cvvNumber=tok_dev_tafASpR3JsyRz5KFzkKeHt,expirationTime=2022-08-31T23:59:59]] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@7e3beb3]
+2018-08-10 13:57:53.524 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2018-08-10 13:57:53.524 DEBUG 71295 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Successfully completed request
 ```

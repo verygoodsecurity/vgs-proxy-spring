@@ -73,3 +73,5 @@ lib/.scannerwork/
 .idea/
 *.iml
 target/
+
+.DS_Store
