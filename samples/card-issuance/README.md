@@ -32,6 +32,8 @@ If you're having difficulties finding your API keys, please refer to
 [this paragraph](https://www.marqeta.com/api/guides/WIlA2isAAMkAsk6F/quick-start---marqeta-api#step_____get_access)
 of the Marqeta Quick Start guide.
 
+![Marqeta API Keys](img/marqeta_api_keys.png)
+
 ### Create a card product
 
 To issue a card, Marqeta requires a [card product](https://www.marqeta.com/api/docs/VhyptRwAAB8A_VeO/card-products).
@@ -77,6 +79,8 @@ This step is done in advance prior to running the application since the
 forwarding URL from the ngrok output is used for routes configuration on the VGS
 dashboard.
 
+![ngrok Forwarding URL](img/ngrok_forwarding_url.png)
+
 ### Create a secure vault
 
 In VGS, sensitive data is stored and managed inside so-called vaults.
@@ -90,6 +94,8 @@ if you're unfamiliar with the process.
 
 After creating a vault, proceed to the Routes section of it and configure the
 routes as described below.
+
+![Routes Section](img/routes_section.png)
 
 #### Inbound Route
 
@@ -222,7 +228,7 @@ Lastly, for the routes configured in the previous step to take effect, requests
 to and from the application must pass through the VGS reverse and forward
 proxies, respectively.
 
-On the vault page, look for the Vault URLs link.
+On the vault page, look for the Vault URLs link: ![Vault URLs](img/vault_urls.png)
 
 To set the Inbound Route URL, execute the following command:
 
@@ -239,5 +245,5 @@ export VGS_PROXY_URL="<Outbound Route URL>"
 ### Start the application
 
 ```bash
-mvn clean package spring-boot:run
+mvn clean package spring-boot:run -DskipTests
 ```
