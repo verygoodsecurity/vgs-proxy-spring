@@ -16,6 +16,7 @@
     <name>VGS Samples :: Aggregator</name>
 
     <modules>
+        <module>card-issuance</module>
         <module>httpbin-router</module>
     </modules>
 

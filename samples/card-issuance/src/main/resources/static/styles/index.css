@@ -1,0 +1,12 @@
+body {
+    margin-top: 2rem;
+}
+
+.fa {
+    font-size: 1.5rem;
+}
+
+.spinner-div {
+    align-items: center;
+    display: flex;
+}
