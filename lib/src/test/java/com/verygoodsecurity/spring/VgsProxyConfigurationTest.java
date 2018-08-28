@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -24,7 +23,7 @@ public class VgsProxyConfigurationTest {
 
   private static final String TRUST_STORE_RESOURCE_NAME = "certs/vgs-proxy.jks";
   private static final String TRUST_STORE_PASSWORD = "verygoodproxy";
-  private static final String forwardProxyUrl = "https://username:password@subdomain.SANDBOX.verygoodproxy.io:8080";
+  private static final String forwardProxyUrl = "https://username:password@subdomain.SANDBOX.verygoodproxy.com:8080";
 
   private RestTemplate restTemplate;
 

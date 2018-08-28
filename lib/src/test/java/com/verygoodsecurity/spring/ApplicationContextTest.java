@@ -28,6 +28,4 @@ public class ApplicationContextTest extends AbstractJUnit4SpringContextTests {
     applicationContext.getBean(RestTemplate.class);
   }
 
-
-
 }
