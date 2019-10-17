@@ -49,7 +49,7 @@ the vault you want to integrate with. Look for the `Outbound Route URL` on the
 `Integration` tab within [the
 dashboard](https://dashboard.verygoodsecurity.com/dashboard) and replace the
 placeholders with a pair of [access
-credentials](https://www.verygoodsecurity.com/docs/guides/access-credentials).
+credentials](https://www.verygoodsecurity.com/docs/settings/access-credentials).
 The resulting URL should look similar to this one:
 
     https://USvWJyqzunxnW1pDKxgvPLmf:3da78204-e566-4e03-a03a-d84e3d1d4d1b@tntabeiyol.SANDBOX.verygoodproxy.com:8080
