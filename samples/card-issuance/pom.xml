@@ -23,14 +23,6 @@
         <vgs-proxy-spring.version>${project.version}</vgs-proxy-spring.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>vgs-oss</id>
-            <name>vgs-oss</name>
-            <url>https://dl.bintray.com/vg/vgs-oss</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
