@@ -9,10 +9,52 @@
     <version>1.0.0</version>
 
     <name>VGS :: Spring Integration</name>
+    <description>Provides an easy way to integrate a Spring-based project with the VGS forward proxy.</description>
+    <url>https://github.com/verygoodsecurity/vgs-proxy-spring</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Oleh Yatskiv</name>
+            <email>oleh.yatskiv@vgs.io</email>
+            <organization>VGS</organization>
+            <organizationUrl>https://verygoodsecurity.com/</organizationUrl>
+        </developer>
+
+        <developer>
+            <name>Yuriy Yunikov</name>
+            <email>yy@vgs.io</email>
+            <organization>VGS</organization>
+            <organizationUrl>https://verygoodsecurity.com/</organizationUrl>
+        </developer>
+
+        <developer>
+            <name>Bohdan Khablenko</name>
+            <email>bohdan.khablenko@vgs.io</email>
+            <organization>VGS</organization>
+            <organizationUrl>https://verygoodsecurity.com/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/verygoodsecurity/vgs-proxy-spring.git</connection>
+        <developerConnection>scm:git:git://github.com/verygoodsecurity/vgs-proxy-spring.git</developerConnection>
+        <url>https://github.com/verygoodsecurity/vgs-proxy-spring</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <properties>
         <java.version>1.8</java.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <mockito.version>1.10.19</mockito.version>
@@ -22,9 +64,13 @@
 
     <distributionManagement>
         <repository>
-            <id>jfrog</id>
-            <url>https://api.bintray.com/maven/vg/vgs-oss/vgs-proxy-spring/;publish=1</url>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <dependencyManagement>
@@ -87,7 +133,43 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
 </project>
