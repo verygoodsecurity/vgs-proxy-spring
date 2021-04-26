@@ -18,7 +18,7 @@
     <name>VGS Samples :: Card Issuance</name>
 
     <properties>
-        <commons-io.version>2.6</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <hamcrest-optional.version>1.1.1</hamcrest-optional.version>
         <vgs-proxy-spring.version>${project.version}</vgs-proxy-spring.version>
     </properties>
